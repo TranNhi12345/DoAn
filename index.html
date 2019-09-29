@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Source+Sans+Pro&display=swap" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <div class=" position-relative" id="background">
+    <div class="text-center display-2 text-white pt-1" style="font-family: 'Source Sans Pro', sans-serif;
+font-family: 'Dancing Script', cursive;"> Recommeder System </div>
+    <div class="input-group mb-3 position-absolute col-md-4" style="top:50%;left:50%;transform:translate(-50%,-50%)">
+      <input type="text" class="form-control " placeholder="Mời nhập UserID" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" style="color: #f8f9fa" type="button">OK</button>
+      </div>
+    </div>
+  </div>
+  <div class="recommend">
+    <div class="fontsize text-uppercase pb-5 font-weight-bold pl-5" >Có thể bạn quan tâm</div>
+    <div class="pb-5 col-md-12 text-center">
+
+      <div class="card d-inline-block mr-4" style="width: 12rem; ">
+        <img src="http://image.phimmoi.net/film/8163/poster.medium.jpg"
+         class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <div class="card-text font-weight-bold">Đạo diễn:</div>
+          <div class="card-text font-weight-bold">Diễn viên:</div>
+          <div class="card-text font-weight-bold">Thể loại:</div>
+          <div class="card-text ">Trung bình đánh giá:</div>
+        </div>
+      </div>
+
+      <div class="card d-inline-block mr-4" style="width: 12rem; ">
+        <img src="http://image.phimmoi.net/film/8163/poster.medium.jpg"
+         class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <div class="card-text font-weight-bold">Đạo diễn:</div>
+          <div class="card-text font-weight-bold">Diễn viên:</div>
+          <div class="card-text font-weight-bold">Thể loại:</div>
+          <div class="card-text ">Trung bình đánh giá:</div>
+        </div>
+      </div>
+
+      <div class="card d-inline-block mr-4" style="width: 12rem; ">
+        <img src="http://image.phimmoi.net/film/8163/poster.medium.jpg"
+         class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <div class="card-text font-weight-bold">Đạo diễn:</div>
+          <div class="card-text font-weight-bold">Diễn viên:</div>
+          <div class="card-text font-weight-bold">Thể loại:</div>
+          <div class="card-text ">Trung bình đánh giá:</div>
+        </div>
+      </div>
+
+      <div class="card d-inline-block mr-4" style="width: 12rem; ">
+        <img src="http://image.phimmoi.net/film/8163/poster.medium.jpg"
+         class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <div class="card-text font-weight-bold">Đạo diễn:</div>
+          <div class="card-text font-weight-bold">Diễn viên:</div>
+          <div class="card-text font-weight-bold">Thể loại:</div>
+          <div class="card-text ">Trung bình đánh giá:</div>
+        </div>
+      </div>
+
+      <div class="card d-inline-block mr-4" style="width: 12rem; ">
+        <img src="http://image.phimmoi.net/film/8163/poster.medium.jpg"
+         class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <div class="card-text font-weight-bold">Đạo diễn:</div>
+          <div class="card-text font-weight-bold">Diễn viên:</div>
+          <div class="card-text font-weight-bold">Thể loại:</div>
+          <div class="card-text ">Trung bình đánh giá:</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pb-5 col-md-12 text-center">
+
+      <div class="card d-inline-block mr-4" style="width: 12rem; ">
+        <img src="http://image.phimmoi.net/film/8163/poster.medium.jpg"
+         class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <div class="card-text font-weight-bold">Đạo diễn:</div>
+          <div class="card-text font-weight-bold">Diễn viên:</div>
+          <div class="card-text font-weight-bold">Thể loại:</div>
+          <div class="card-text ">Trung bình đánh giá:</div>
+        </div>
+      </div>
+
+      <div class="card d-inline-block mr-4" style="width: 12rem; ">
+        <img src="http://image.phimmoi.net/film/8163/poster.medium.jpg"
+         class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <div class="card-text font-weight-bold">Đạo diễn:</div>
+          <div class="card-text font-weight-bold">Diễn viên:</div>
+          <div class="card-text font-weight-bold">Thể loại:</div>
+          <div class="card-text ">Trung bình đánh giá:</div>
+        </div>
+      </div>
+
+      <div class="card d-inline-block mr-4" style="width: 12rem; ">
+        <img src="http://image.phimmoi.net/film/8163/poster.medium.jpg"
+         class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <div class="card-text font-weight-bold">Đạo diễn:</div>
+          <div class="card-text font-weight-bold">Diễn viên:</div>
+          <div class="card-text font-weight-bold">Thể loại:</div>
+          <div class="card-text ">Trung bình đánh giá:</div>
+        </div>
+      </div>
+
+      <div class="card d-inline-block mr-4" style="width: 12rem; ">
+        <img src="http://image.phimmoi.net/film/8163/poster.medium.jpg"
+         class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <div class="card-text font-weight-bold">Đạo diễn:</div>
+          <div class="card-text font-weight-bold">Diễn viên:</div>
+          <div class="card-text font-weight-bold">Thể loại:</div>
+          <div class="card-text ">Trung bình đánh giá:</div>
+        </div>
+      </div>
+
+      <div class="card d-inline-block mr-4" style="width: 12rem; ">
+        <img src="http://image.phimmoi.net/film/8163/poster.medium.jpg"
+         class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <div class="card-text font-weight-bold">Đạo diễn:</div>
+          <div class="card-text font-weight-bold">Diễn viên:</div>
+          <div class="card-text font-weight-bold">Thể loại:</div>
+          <div class="card-text ">Trung bình đánh giá:</div>
+        </div>
+      </div>
+      <!-- <section class="carousel slide" data-ride="carousel" id="postsCarousel">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-md-right lead">
+                    <a class="btn btn-outline-secondary prev" href="" title="go back"><i class="fa fa-lg fa-chevron-left"></i></a>
+                    <a class="btn btn-outline-secondary next" href="" title="more"><i class="fa fa-lg fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container p-t-0 m-t-2 carousel-inner">
+            <div class="row row-equal carousel-item active m-t-0">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-img-top card-img-top-250">
+                            <img class="img-fluid" src="http://i.imgur.com/EW5FgJM.png" alt="Carousel 1">
+                        </div>
+                        <div class="card-block p-t-2">
+                            <h6 class="small text-wide p-b-2">Insight</h6>
+                            <h2>
+                                <a href>Why Stuff Happens Every Year.</a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-img-top card-img-top-250">
+                            <img class="img-fluid" src="http://i.imgur.com/Hw7sWGU.png" alt="Carousel 2">
+                        </div>
+                        <div class="card-block p-t-2">
+                            <h6 class="small text-wide p-b-2">Development</h6>
+                            <h2>
+                                <a href>How to Make Every Line Count.</a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-img-top card-img-top-250">
+                            <img class="img-fluid" src="http://i.imgur.com/g27lAMl.png" alt="Carousel 3">
+                        </div>
+                        <div class="card-block p-t-2">
+                            <h6 class="small text-wide p-b-2">Design</h6>
+                            <h2>
+                                <a href>Responsive is Essential.</a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-equal carousel-item m-t-0">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-img-top card-img-top-250">
+                            <img class="img-fluid" src="//visualhunt.com/photos/l/1/office-student-work-study.jpg" alt="Carousel 4">
+                        </div>
+                        <div class="card-block p-t-2">
+                            <h6 class="small text-wide p-b-2">Another</h6>
+                            <h2>
+                                <a href>Tagline or Call-to-action.</a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-img-top card-img-top-250">
+                            <img class="img-fluid" src="//visualhunt.com/photos/l/1/working-woman-technology-computer.jpg" alt="Carousel 5">
+                        </div>
+                        <div class="card-block p-t-2">
+                            <h6 class="small text-wide p-b-2"><span class="pull-xs-right">12.04</span> Category 1</h6>
+                            <h2>
+                                <a href>This is a Blog Title.</a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 fadeIn wow">
+                    <div class="card">
+                        <div class="card-img-top card-img-top-250">
+                            <img class="img-fluid" src="//visualhunt.com/photos/l/1/people-office-team-collaboration.jpg" alt="Carousel 6">
+                        </div>
+                        <div class="card-block p-t-2">
+                            <h6 class="small text-wide p-b-2">Category 3</h6>
+                            <h2>
+                                <a href>Catchy Title of a Blog Post.</a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    </div>
+
+  </div>
+  <section class="carousel slide" data-ride="carousel" id="postsCarousel">
+    <div class="container">
+        <div class="row">
+
+        </div>
+    </div>
+    <div class="container p-t-0 m-t-2 carousel-inner position-relative">
+      <div class="col-xs-12 text-md-right lead">
+          <a class="btn btn-outline-secondary prev position-absolute bg-primary" style="top: 50%; z-index: 3;transform: translate(-50%, 50%);" href="" title="go back"><i class="fa fa-lg fa-chevron-left"></i></a>
+          <a class="btn btn-outline-secondary next position-absolute bg-primary" style="top: 50%;right: 0; z-index: 3;transform: translate(50%, 50%);" href="" title="more"><i class="fa fa-lg fa-chevron-right"></i></a>
+      </div>
+        <div class="row row-equal carousel-item active m-t-0">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="http://i.imgur.com/EW5FgJM.png" alt="Carousel 1">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <h6 class="small text-wide p-b-2">Insight</h6>
+                        <h2>
+                            <a href>Why Stuff Happens Every Year.</a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="http://i.imgur.com/Hw7sWGU.png" alt="Carousel 2">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <h6 class="small text-wide p-b-2">Development</h6>
+                        <h2>
+                            <a href>How to Make Every Line Count.</a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="http://i.imgur.com/g27lAMl.png" alt="Carousel 3">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <h6 class="small text-wide p-b-2">Design</h6>
+                        <h2>
+                            <a href>Responsive is Essential.</a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-equal carousel-item m-t-0">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="//visualhunt.com/photos/l/1/office-student-work-study.jpg" alt="Carousel 4">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <h6 class="small text-wide p-b-2">Another</h6>
+                        <h2>
+                            <a href>Tagline or Call-to-action.</a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="//visualhunt.com/photos/l/1/working-woman-technology-computer.jpg" alt="Carousel 5">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <h6 class="small text-wide p-b-2"><span class="pull-xs-right">12.04</span> Category 1</h6>
+                        <h2>
+                            <a href>This is a Blog Title.</a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 fadeIn wow">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="//visualhunt.com/photos/l/1/people-office-team-collaboration.jpg" alt="Carousel 6">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <h6 class="small text-wide p-b-2">Category 3</h6>
+                        <h2>
+                            <a href>Catchy Title of a Blog Post.</a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+(function($) {
+  "use strict";
+
+  // manual carousel controls
+  $('.next').click(function(){ $('.carousel').carousel('next');return false; });
+  $('.prev').click(function(){ $('.carousel').carousel('prev');return false; });
+
+  })(jQuery);
+</script>
+
+
+
+
+
+</body>
+</html>
