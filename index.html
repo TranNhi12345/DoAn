@@ -177,8 +177,12 @@
 
 <script>
   $(function(){
+    var phim = [];
     $.getJSON("http://127.0.0.1:5000/out", function(data){
       console.log(data);
+      $.map(data, function(v){
+        console.log(v[0]);
+      });
     });
   });
 </script>
