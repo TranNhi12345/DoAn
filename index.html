@@ -181,7 +181,20 @@
     $.getJSON("http://127.0.0.1:5000/out", function(data){
       console.log(data);
       $.map(data, function(v){
-        console.log(v[0]);
+        var check = $.grep(phim,function(v){
+          return v == phim.title
+        });
+        console.log(check.length);
+        // if ( check.length == 0 )
+        //   phim.push({
+        //     "title" : v[0],
+        //     "director" : v[1],
+        //     "stars" :v[2],
+        //     "category" : v[3],
+        //     "rating" : v[4],
+        //   });
+        // else
+        //   phim.
       });
     });
   });
