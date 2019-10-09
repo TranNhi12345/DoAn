@@ -54,7 +54,7 @@
         rating = "",
         title = "",
         stars = "";
-    $.getJSON("127.0.0.1:5000/out" ,function(data){
+    $.getJSON("http://127.0.0.1:5000/out" ,function(data){
       data.push(["a"]);
       $.map(data, function(v,i){
         var checktt = $.grep(check, function(n){
