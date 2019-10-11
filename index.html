@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -14,7 +14,7 @@
 </head>
 <body>
   <div class=" position-relative" id="background">
-    <div class="text-center display-2 text-white pt-1" style="font-family: 'Source Sans Pro', sans-serif; font-family: 'Dancing Script', cursive;"> Recommender System </div>
+    <div class="text-center display-2 text-white pt-1" style="font-family: 'Dancing Script';"> Recommender System </div>
     <div class="input-group mb-3 position-absolute col-md-4" style="top:50%;left:50%;transform:translate(-50%,-50%)">
       <input type="text" class="form-control " placeholder="Mời nhập UserID" aria-label="Recipient's username" aria-describedby="basic-addon2">
       <div class="input-group-append">
@@ -23,11 +23,9 @@
     </div>
   </div>
 
-
   <div class="recommend">
     <div class="fontsize text-uppercase pb-5 font-weight-bold pl-5" >Có thể bạn quan tâm</div>
 
-  <div class="recommend">
   <div id="carouselExampleIndicators" class="carousel slide pl-5 pr-5 col-md-11 mx-auto pb-5" data-ride="carousel">
     <div class="carousel-inner">
     </div>
@@ -98,14 +96,14 @@
           $("<div>", { class: "carousel-item w-100 text-center " + ( i == 0 ? "active" : "")}).append(
             $.map([0,1,2,3], function(v){
               var n = v +4*i;
-              return $("<div>", { class: "card d-inline-block mr-4"}).css({"width":"16rem"}).append(
+              return $("<div>", { class: "card col-md-3 d-inline-block mr-2 align-top position-relative"}).css({"width":"16rem", "height": "650px"}).append(
                 $("<img>", { src: "http://image.phimmoi.net/film/8163/poster.medium.jpg", class:"card-img-top"}),
                 $("<div>", { class: "card-body"}).append(
                   $("<h5>", { class: "card-title", text: "Phim: " + phim[n].title}),
                   $("<div>", { class: "card-text text-left", text: "- Đạo diễn: " + phim[n].director}),
                   $("<div>", { class: "card-text text-left", text: "- Diễn viên: " + phim[n].stars}),
                   $("<div>", { class: "card-text text-left", text: "- Thể loại: " + phim[n].category}),
-                  $("<div>", { class: "card-text text-left", text: "- Trung bình đánh giá: " + phim[n].rating}),
+                  $("<div>", { class: "card-text text-left position-absolute mb-2", text: "- Trung bình đánh giá: " + phim[n].rating}).css({"bottom":"0"}),
                 ),
               );
             }),
@@ -114,6 +112,137 @@
       }
     });
   });
+</script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Source+Sans+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <div class=" position-relative" id="background">
+    <div class="text-center display-2 text-white pt-1" style="font-family: 'Dancing Script';"> Recommender System </div>
+    <!-- <form method="POST"> -->
+    <div class="input-group mb-3 position-absolute col-md-4" style="top:50%;left:50%;transform:translate(-50%,-50%)">
+      <input type="text" class="form-control " name="userID" placeholder="Mời nhập UserID" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" id="btnOK" style="color: #f8f9fa" type="button">OK</button>
+      </div>
+    </div>
+  <!-- </form> -->
+  </div>
+
+  <div class="recommend">
+    <div class="fontsize text-uppercase pb-5 font-weight-bold pl-5" >Có thể bạn quan tâm</div>
+
+  <div id="carouselExampleIndicators" class="carousel slide pl-5 pr-5 col-md-11 mx-auto pb-5" data-ride="carousel">
+    <div class="carousel-inner">
+    </div>
+    <a class="bg-primary position-absolute" style="top:50%; left: 0; transform: translateY(50%)" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <div class="btn bg-primary text-light">
+        <i class="fas fa-chevron-left "></i>
+      </div>
+    </a>
+    <a class="bg-primary position-absolute" style="top:50%; right: 0; transform: translateY(50%)" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <div class="btn bg-primary text-light">
+        <i class="fas fa-chevron-right "></i>
+      </div>
+    </a>
+  </div>
+  </div>
+
+<script>
+  $(function(){
+    var phim = [],
+        i = 0,
+        check = [],
+        category = "",
+        director = "",
+        rating = "",
+        title = "",
+        stars = "";
+    $.getJSON("http://127.0.0.1:5000/out" ,function(data){
+      data.push(["a"]);
+      $.map(data, function(v,i){
+        var checktt = $.grep(check, function(n){
+          return n == v[0];
+        });
+        if (checktt.length == 1){
+          category += ", "+ v[3];
+          director = v[1];
+          rating = v[4];
+          title = v[0];
+          stars = v[2];
+        }
+        else {
+          if (check.length == 0 ){
+            check.push(v[0]);
+            category = v[3];
+            director = v[1];
+            rating = v[4];
+            title = v[0];
+            stars = v[2];
+          }
+          else{
+            phim.push({
+              "title" : title,
+              "director" : director,
+              "stars" : stars,
+              "category" : category,
+              "rating" : rating,
+            });
+            check.push(v[0]);
+            category = v[3];
+            director = v[1];
+            rating = v[4];
+            title = v[0];
+            stars = v[2];
+          }
+        }
+      });
+      for (var i = 0 ; i < 3; i++){
+        $(".carousel-inner").append(
+          $("<div>", { class: "carousel-item w-100 text-center " + ( i == 0 ? "active" : "")}).append(
+            $.map([0,1,2,3], function(v){
+              var n = v +4*i;
+              return $("<div>", { class: "card col-md-3 d-inline-block mr-2 align-top position-relative"}).css({"width":"16rem", "height": "650px"}).append(
+                $("<img>", { src: "http://image.phimmoi.net/film/8163/poster.medium.jpg", class:"card-img-top"}),
+                $("<div>", { class: "card-body"}).append(
+                  $("<h5>", { class: "card-title", name: "film", id: "film", text: "Phim: " + phim[n].title}),
+                  $("<div>", { class: "card-text text-left", name: "director", id: "director", text: "- Đạo diễn: " + phim[n].director}),
+                  $("<div>", { class: "card-text text-left", name: "stars", id: "stars", text: "- Diễn viên: " + phim[n].stars}),
+                  $("<div>", { class: "card-text text-left", name: "category", id: "category", text: "- Thể loại: " + phim[n].category}),
+                  $("<div>", { class: "card-text text-left position-absolute mb-2", name: "rating", id: "rating", text: "- Trung bình đánh giá: " + phim[n].rating}).css({"bottom":"0"}),
+                ),
+              );
+            }),
+          ),
+        );
+      }
+    });
+  });
+
+  // $(function(){
+  //   $('#btnOK').click(function(){
+  //     $.ajax({
+  //       url: '/out',
+  //       type: 'GET'
+  //     });
+  //   });
+  // });
 </script>
 </body>
 </html>
