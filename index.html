@@ -135,14 +135,12 @@
 <body>
   <div class=" position-relative" id="background">
     <div class="text-center display-2 text-white pt-1" style="font-family: 'Dancing Script';"> Recommender System </div>
-    <form method="POST">
-      <div class="input-group mb-3 position-absolute col-md-4" style="top:50%;left:50%;transform:translate(-50%,-50%)">
-        <input type="text" class="form-control " name="userID" placeholder="Mời nhập UserID" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <a class="btn btn-outline-secondary" href="/showData" id="btnOK" style="color: #f8f9fa" role="button">OK</a>
-        </div>
+    <div class="input-group mb-3 position-absolute col-md-4" style="top:50%;left:50%;transform:translate(-50%,-50%)">
+      <input type="text" class="form-control " name="userID" id="userID" placeholder="Mời nhập UserID" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" id="btnOK" style="color: #f8f9fa" type="button">OK</button>
       </div>
-  </form>
+    </div>
   </div>
 
   <div class="recommend">
@@ -166,6 +164,7 @@
 
 <script>
   $(function(){
+    var val;
     var phim = [],
         i = 0,
         check = [],
@@ -174,75 +173,75 @@
         rating = "",
         title = "",
         stars = "";
-    $.getJSON("http://127.0.0.1:5000/out" ,function(data){
-      data.push(["a"]);
-      $.map(data, function(v,i){
-        var checktt = $.grep(check, function(n){
-          return n == v[0];
+
+    $("#btnOK").click(function(){
+      // window.location.href=window.location.href;
+      val = $("#userID").val();
+      // $(".carousel-item w-100 text-center, .card col-md-3 d-inline-block mr-2 align-top position-relative, .card-body, .card-title, .card-text text-left, .card-text text-left position-absolute mb-2, .card-img-top").remove();
+      $(".carousel-item w-100 text-center").remove();
+      $.getJSON("http://127.0.0.1:5000/out", {data : val}, function(data){
+        console.log(data);
+        data.push(["a"]);
+        $.map(data, function(v,i){
+          var checktt = $.grep(check, function(n){
+            return n == v[0];
+          });
+          if (checktt.length == 1){
+            category += ", "+ v[3];
+            director = v[1];
+            rating = v[4];
+            title = v[0];
+            stars = v[2];
+          }
+          else {
+            if (check.length == 0 ){
+              check.push(v[0]);
+              category = v[3];
+              director = v[1];
+              rating = v[4];
+              title = v[0];
+              stars = v[2];
+            }
+            else{
+              phim.push({
+                "title" : title,
+                "director" : director,
+                "stars" : stars,
+                "category" : category,
+                "rating" : rating,
+              });
+              check.push(v[0]);
+              category = v[3];
+              director = v[1];
+              rating = v[4];
+              title = v[0];
+              stars = v[2];
+            }
+          }
         });
-        if (checktt.length == 1){
-          category += ", "+ v[3];
-          director = v[1];
-          rating = v[4];
-          title = v[0];
-          stars = v[2];
-        }
-        else {
-          if (check.length == 0 ){
-            check.push(v[0]);
-            category = v[3];
-            director = v[1];
-            rating = v[4];
-            title = v[0];
-            stars = v[2];
-          }
-          else{
-            phim.push({
-              "title" : title,
-              "director" : director,
-              "stars" : stars,
-              "category" : category,
-              "rating" : rating,
-            });
-            check.push(v[0]);
-            category = v[3];
-            director = v[1];
-            rating = v[4];
-            title = v[0];
-            stars = v[2];
-          }
+        for (var i = 0 ; i < 3; i++){
+          $(".carousel-inner").append(
+            $("<div>", { class: "carousel-item w-100 text-center " + ( i == 0 ? "active" : "")}).append(
+              $.map([0,1,2,3], function(v){
+                var n = v +4*i;
+                return $("<div>", { class: "card col-md-3 d-inline-block mr-2 align-top position-relative"}).css({"width":"16rem", "height": "650px"}).append(
+                  $("<img>", { src: "http://image.phimmoi.net/film/8163/poster.medium.jpg", class:"card-img-top"}),
+                  $("<div>", { class: "card-body"}).append(
+                    $("<h5>", { class: "card-title", text: "Phim: " + phim[n].title}),
+                    $("<div>", { class: "card-text text-left", text: "- Đạo diễn: " + phim[n].director}),
+                    $("<div>", { class: "card-text text-left", text: "- Diễn viên: " + phim[n].stars}),
+                    $("<div>", { class: "card-text text-left", text: "- Thể loại: " + phim[n].category}),
+                    $("<div>", { class: "card-text text-left position-absolute mb-2", text: "- Trung bình đánh giá: " + phim[n].rating}).css({"bottom":"0"}),
+                  ),
+                );
+              }),
+            ),
+          );
         }
       });
-      for (var i = 0 ; i < 3; i++){
-        $(".carousel-inner").append(
-          $("<div>", { class: "carousel-item w-100 text-center " + ( i == 0 ? "active" : "")}).append(
-            $.map([0,1,2,3], function(v){
-              var n = v +4*i;
-              return $("<div>", { class: "card col-md-3 d-inline-block mr-2 align-top position-relative"}).css({"width":"16rem", "height": "650px"}).append(
-                $("<img>", { src: "http://image.phimmoi.net/film/8163/poster.medium.jpg", class:"card-img-top"}),
-                $("<div>", { class: "card-body"}).append(
-                  $("<h5>", { class: "card-title", name: "film", id: "film", text: "Phim: " + phim[n].title}),
-                  $("<div>", { class: "card-text text-left", name: "director", id: "director", text: "- Đạo diễn: " + phim[n].director}),
-                  $("<div>", { class: "card-text text-left", name: "stars", id: "stars", text: "- Diễn viên: " + phim[n].stars}),
-                  $("<div>", { class: "card-text text-left", name: "category", id: "category", text: "- Thể loại: " + phim[n].category}),
-                  $("<div>", { class: "card-text text-left position-absolute mb-2", name: "rating", id: "rating", text: "- Trung bình đánh giá: " + phim[n].rating}).css({"bottom":"0"}),
-                ),
-              );
-            }),
-          ),
-        );
-      }
     });
   });
 
-  // $(function(){
-  //   $('#btnOK').click(function(){
-  //     $.ajax({
-  //       url: '/out',
-  //       type: 'GET'
-  //     });
-  //   });
-  // });
 </script>
 </body>
 </html>
