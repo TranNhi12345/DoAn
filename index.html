@@ -165,6 +165,9 @@
 <script>
   $(function(){
     var val;
+
+    $("#btnOK").click(function(){
+    $(".carousel-inner").children().remove();
     var phim = [],
         i = 0,
         check = [],
@@ -173,14 +176,9 @@
         rating = "",
         title = "",
         stars = "";
+    val = $("#userID").val();
 
-    $("#btnOK").click(function(){
-      // window.location.href=window.location.href;
-      val = $("#userID").val();
-      // $(".carousel-item w-100 text-center, .card col-md-3 d-inline-block mr-2 align-top position-relative, .card-body, .card-title, .card-text text-left, .card-text text-left position-absolute mb-2, .card-img-top").remove();
-      $(".carousel-item w-100 text-center").remove();
       $.getJSON("http://127.0.0.1:5000/out", {data : val}, function(data){
-        console.log(data);
         data.push(["a"]);
         $.map(data, function(v,i){
           var checktt = $.grep(check, function(n){
@@ -239,6 +237,7 @@
           );
         }
       });
+
     });
   });
 
