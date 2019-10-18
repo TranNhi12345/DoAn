@@ -220,16 +220,32 @@
         for (var i = 0 ; i < 3; i++){
           $(".carousel-inner").append(
             $("<div>", { class: "carousel-item w-100 text-center " + ( i == 0 ? "active" : "")}).append(
-              $.map([0,1,2,3], function(v){
+              $.map([0,1,2,4], function(v){
                 var n = v +4*i;
-                return $("<div>", { class: "card col-md-3 d-inline-block mr-2 align-top position-relative"}).css({"width":"16rem", "height": "650px"}).append(
-                  $("<img>", { src: "http://image.phimmoi.net/film/8163/poster.medium.jpg", class:"card-img-top"}),
+                return $("<div>", { class: "card col-md-8 d-inline-block mr-2 align-top position-relative"}).css({"width":"250px", "height": "650px"}).append(
+                  $("<img>", { src: "http://image.phimmoi.net/film/8163/poster.medium.jpg", class:"card-img-top w-75"}),
                   $("<div>", { class: "card-body"}).append(
-                    $("<h5>", { class: "card-title", text: "Phim: " + phim[n].title}),
-                    $("<div>", { class: "card-text text-left", text: "- Đạo diễn: " + phim[n].director}),
-                    $("<div>", { class: "card-text text-left", text: "- Diễn viên: " + phim[n].stars}),
-                    $("<div>", { class: "card-text text-left", text: "- Thể loại: " + phim[n].category}),
-                    $("<div>", { class: "card-text text-left position-absolute mb-2", text: "- Trung bình đánh giá: " + phim[n].rating}).css({"bottom":"0"}),
+                    $("<h5>", { class: "card-title ", text: "Phim: " + phim[n].title}),
+                    // $("<div>", { class: "card-text text-left", text: "- Đạo diễn: " + phim[n].director}),
+                    $("<div>", { class: "card-text text-left "}).append(
+                      $("<div>", { class: " font-weight-bold d-inline", text: "Đạo diễn: "}),
+                      $("<div>", {class: "d-inline", text: phim[n].director})
+                    ),
+                    $("<div>", { class: "card-text text-left mt-2"}).append(
+                      $("<div>", { class: " font-weight-bold d-inline", text: "Diễn viên: "}),
+                      $("<div>", {class: "d-inline", text: phim[n].stars})
+                    ),
+                    // $("<div>", { class: "card-text text-left", text: "Diễn viên: " + phim[n].stars}),
+                    $("<div>", { class: "card-text text-left mt-2"}).append(
+                      $("<div>", { class: " font-weight-bold d-inline", text: "Thể loại: "}),
+                      $("<div>", {class: "d-inline", text: phim[n].category})
+                    ),
+                    // $("<div>", { class: "card-text text-left", text: "Thể loại: " + phim[n].category}),
+                    $("<div>", { class: "card-text text-left position-absolute mb-3 mt-2"}).css({"bottom":"0"}).append(
+                      $("<div>", { class: " font-weight-bold d-inline  ", text: "Trung bình đánh giá: "}),
+                      $("<div>", {class: "d-inline ", text: phim[n].rating})
+                    ),
+                    // $("<div>", { class: "card-text text-left position-absolute mb-2", text: "Trung bình đánh giá: " + phim[n].rating}).css({"bottom":"0"}),
                   ),
                 );
               }),
