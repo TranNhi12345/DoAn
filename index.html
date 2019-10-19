@@ -144,41 +144,47 @@
   </div>
 
   <div class="recommend">
-    <div class="fontsize text-uppercase pb-5 font-weight-bold pl-5" >Có thể bạn quan tâm</div>
+      <div class="fontsize text-uppercase pb-5 font-weight-bold pl-5" >Có thể bạn quan tâm</div>
 
-  <div id="carouselExampleIndicators" class="carousel slide pl-5 pr-5 col-md-11 mx-auto pb-5" data-ride="carousel">
-    <div class="carousel-inner">
-    </div>
-    <a class="bg-primary position-absolute" style="top:50%; left: 0; transform: translateY(50%)" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <div class="btn bg-primary text-light">
-        <i class="fas fa-chevron-left "></i>
+      <div id="carouselRecommend" class="carousel slide pl-5 pr-5 col-md-11 mx-auto pb-5" data-ride="carousel">
+        <div class="carousel-inner" id="recommend">
+        </div>
+        <a class="bg-primary position-absolute" style="top:50%; left: 0; transform: translateY(50%)" href="#carouselRecommend" role="button" data-slide="prev">
+          <div class="btn bg-primary text-light">
+            <i class="fas fa-chevron-left "></i>
+          </div>
+        </a>
+        <a class="bg-primary position-absolute" style="top:50%; right: 0; transform: translateY(50%)" href="#carouselRecommend" role="button" data-slide="next">
+          <div class="btn bg-primary text-light">
+            <i class="fas fa-chevron-right "></i>
+          </div>
+        </a>
       </div>
-    </a>
-    <a class="bg-primary position-absolute" style="top:50%; right: 0; transform: translateY(50%)" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <div class="btn bg-primary text-light">
-        <i class="fas fa-chevron-right "></i>
+
+      <div class="fontsize text-uppercase pb-5 font-weight-bold pl-5 mt-5" >Những phim bạn đã xem</div>
+
+      <div id="carouselHistory" class="carousel slide pl-5 pr-5 col-md-11 mx-auto pb-5" data-ride="carousel">
+        <div class="carousel-inner" id="history">
+        </div>
+        <a class="bg-primary position-absolute" style="top:50%; left: 0; transform: translateY(50%)" href="#carouselHistory" role="button" data-slide="prev">
+          <div class="btn bg-primary text-light">
+            <i class="fas fa-chevron-left "></i>
+          </div>
+        </a>
+        <a class="bg-primary position-absolute" style="top:50%; right: 0; transform: translateY(50%)" href="#carouselHistory" role="button" data-slide="next">
+          <div class="btn bg-primary text-light">
+            <i class="fas fa-chevron-right "></i>
+          </div>
+        </a>
       </div>
-    </a>
-  </div>
+
   </div>
 
 <script>
   $(function(){
     var val;
-
-    $("#btnOK").click(function(){
-    $(".carousel-inner").children().remove();
-    var phim = [],
-        i = 0,
-        check = [],
-        category = "",
-        director = "",
-        rating = "",
-        title = "",
-        stars = "";
-    val = $("#userID").val();
-
-      $.getJSON("http://127.0.0.1:5000/out", {data : val}, function(data){
+    makeSlide = (data,phim,check,category,director,rating,title,stars, placeid) =>{
+      console.log(data);
         data.push(["a"]);
         $.map(data, function(v,i){
           var checktt = $.grep(check, function(n){
@@ -218,9 +224,9 @@
           }
         });
         for (var i = 0 ; i < 3; i++){
-          $(".carousel-inner").append(
+          $("#"+ placeid).append(
             $("<div>", { class: "carousel-item w-100 text-center " + ( i == 0 ? "active" : "")}).append(
-              $.map([0,1,2,4], function(v){
+              $.map([0,1,2,3], function(v){
                 var n = v +4*i;
                 return $("<div>", { class: "card col-md-8 d-inline-block mr-2 align-top position-relative"}).css({"width":"250px", "height": "650px"}).append(
                   $("<img>", { src: "http://image.phimmoi.net/film/8163/poster.medium.jpg", class:"card-img-top w-75"}),
@@ -242,7 +248,7 @@
                     ),
                     // $("<div>", { class: "card-text text-left", text: "Thể loại: " + phim[n].category}),
                     $("<div>", { class: "card-text text-left position-absolute mb-3 mt-2"}).css({"bottom":"0"}).append(
-                      $("<div>", { class: " font-weight-bold d-inline  ", text: "Trung bình đánh giá: "}),
+                      $("<div>", { class: " font-weight-bold d-inline  ", text: "Đánh giá: "}),
                       $("<div>", {class: "d-inline ", text: phim[n].rating})
                     ),
                     // $("<div>", { class: "card-text text-left position-absolute mb-2", text: "Trung bình đánh giá: " + phim[n].rating}).css({"bottom":"0"}),
@@ -252,8 +258,110 @@
             ),
           );
         }
+      }
+    $("#btnOK").click(function(){
+    $("#recommend").children().remove();
+    $("#history").children().remove();
+    var phim = [],
+        check = [],
+        category = "",
+        director = "",
+        rating = "",
+        title = "",
+        stars = "",
+        phimH = [],
+        checkH = [],
+        categoryH = "",
+        directorH = "",
+        ratingH = "",
+        titleH = "",
+        starsH = "";
+    val = $("#userID").val();
+
+      $.getJSON("http://127.0.0.1:5000/out", {data : val}, function(data){
+        makeSlide(data,phim,check,category,director,rating,title,stars,"recommend");
       });
 
+      $.getJSON("http://127.0.0.1:5000/history", {data : val}, function(data){
+        makeSlide(data,phimH,checkH,categoryH,directorH,ratingH,titleH,starsH,"history");
+      });
+
+      // makeSlide = (data,phim,i,check,category,director,rating,title,stars, placeid) =>{
+      //   console.log(data);
+      //     data.push(["a"]);
+      //     $.map(data, function(v,i){
+      //       var checktt = $.grep(check, function(n){
+      //         return n == v[0];
+      //       });
+      //       if (checktt.length == 1){
+      //         category += ", "+ v[3];
+      //         director = v[1];
+      //         rating = v[4];
+      //         title = v[0];
+      //         stars = v[2];
+      //       }
+      //       else {
+      //         if (check.length == 0 ){
+      //           check.push(v[0]);
+      //           category = v[3];
+      //           director = v[1];
+      //           rating = v[4];
+      //           title = v[0];
+      //           stars = v[2];
+      //         }
+      //         else{
+      //           phim.push({
+      //             "title" : title,
+      //             "director" : director,
+      //             "stars" : stars,
+      //             "category" : category,
+      //             "rating" : rating,
+      //           });
+      //           check.push(v[0]);
+      //           category = v[3];
+      //           director = v[1];
+      //           rating = v[4];
+      //           title = v[0];
+      //           stars = v[2];
+      //         }
+      //       }
+      //     });
+      //     for (var i = 0 ; i < 3; i++){
+      //       $("#"+ placeid).append(
+      //         $("<div>", { class: "carousel-item w-100 text-center " + ( i == 0 ? "active" : "")}).append(
+      //           $.map([0,1,2,4], function(v){
+      //             var n = v +4*i;
+      //             return $("<div>", { class: "card col-md-8 d-inline-block mr-2 align-top position-relative"}).css({"width":"250px", "height": "650px"}).append(
+      //               $("<img>", { src: "http://image.phimmoi.net/film/8163/poster.medium.jpg", class:"card-img-top w-75"}),
+      //               $("<div>", { class: "card-body"}).append(
+      //                 $("<h5>", { class: "card-title ", text: "Phim: " + phim[n].title}),
+      //                 // $("<div>", { class: "card-text text-left", text: "- Đạo diễn: " + phim[n].director}),
+      //                 $("<div>", { class: "card-text text-left "}).append(
+      //                   $("<div>", { class: " font-weight-bold d-inline", text: "Đạo diễn: "}),
+      //                   $("<div>", {class: "d-inline", text: phim[n].director})
+      //                 ),
+      //                 $("<div>", { class: "card-text text-left mt-2"}).append(
+      //                   $("<div>", { class: " font-weight-bold d-inline", text: "Diễn viên: "}),
+      //                   $("<div>", {class: "d-inline", text: phim[n].stars})
+      //                 ),
+      //                 // $("<div>", { class: "card-text text-left", text: "Diễn viên: " + phim[n].stars}),
+      //                 $("<div>", { class: "card-text text-left mt-2"}).append(
+      //                   $("<div>", { class: " font-weight-bold d-inline", text: "Thể loại: "}),
+      //                   $("<div>", {class: "d-inline", text: phim[n].category})
+      //                 ),
+      //                 // $("<div>", { class: "card-text text-left", text: "Thể loại: " + phim[n].category}),
+      //                 $("<div>", { class: "card-text text-left position-absolute mb-3 mt-2"}).css({"bottom":"0"}).append(
+      //                   $("<div>", { class: " font-weight-bold d-inline  ", text: "Trung bình đánh giá: "}),
+      //                   $("<div>", {class: "d-inline ", text: phim[n].rating})
+      //                 ),
+      //                 // $("<div>", { class: "card-text text-left position-absolute mb-2", text: "Trung bình đánh giá: " + phim[n].rating}).css({"bottom":"0"}),
+      //               ),
+      //             );
+      //           }),
+      //         ),
+      //       );
+      //     }
+      //   // }
     });
   });
 
