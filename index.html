@@ -161,7 +161,7 @@
         </a>
       </div>
 
-      <div class="fontsize text-uppercase pb-5 font-weight-bold pl-5 mt-5" >Những phim bạn đã xem</div>
+      <div class="fontsize text-uppercase pb-5 font-weight-bold pl-5 mt-3" >Những phim bạn đã xem</div>
 
       <div id="carouselHistory" class="carousel slide pl-5 pr-5 col-md-11 mx-auto pb-5" data-ride="carousel">
         <div class="carousel-inner" id="history">
@@ -180,10 +180,34 @@
 
   </div>
 
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 <script>
   $(function(){
     var val;
-    makeSlide = (data,phim,check,category,director,rating,title,stars, placeid) =>{
+    makeSlide = (data,phim,check,category,director,rating,title,stars,placeid) =>{
       console.log(data);
         data.push(["a"]);
         $.map(data, function(v,i){
@@ -228,11 +252,11 @@
             $("<div>", { class: "carousel-item w-100 text-center " + ( i == 0 ? "active" : "")}).append(
               $.map([0,1,2,3], function(v){
                 var n = v +4*i;
-                return $("<div>", { class: "card col-md-8 d-inline-block mr-2 align-top position-relative"}).css({"width":"250px", "height": "650px"}).append(
-                  $("<img>", { src: "http://image.phimmoi.net/film/8163/poster.medium.jpg", class:"card-img-top w-75"}),
+                return $("<div>", { class: "card col-md-8 d-inline-block mr-2 align-top position-relative", id: "movie"}).css({"width":"250px", "height": "650px"}).append(
+                  $("<img>", { src: "https://m.media-amazon.com/images/M/MV5BMzk2OTg4MTk1NF5BMl5BanBnXkFtZTcwNjExNTgzNA@@._V1_UX182_CR0,0,182,268_AL_.jpg", class:"card-img-top w-75"}),
                   $("<div>", { class: "card-body"}).append(
                     $("<h5>", { class: "card-title ", text: "Phim: " + phim[n].title}),
-                    // $("<div>", { class: "card-text text-left", text: "- Đạo diễn: " + phim[n].director}),
+
                     $("<div>", { class: "card-text text-left "}).append(
                       $("<div>", { class: " font-weight-bold d-inline", text: "Đạo diễn: "}),
                       $("<div>", {class: "d-inline", text: phim[n].director})
@@ -241,17 +265,17 @@
                       $("<div>", { class: " font-weight-bold d-inline", text: "Diễn viên: "}),
                       $("<div>", {class: "d-inline", text: phim[n].stars})
                     ),
-                    // $("<div>", { class: "card-text text-left", text: "Diễn viên: " + phim[n].stars}),
+
                     $("<div>", { class: "card-text text-left mt-2"}).append(
                       $("<div>", { class: " font-weight-bold d-inline", text: "Thể loại: "}),
                       $("<div>", {class: "d-inline", text: phim[n].category})
                     ),
-                    // $("<div>", { class: "card-text text-left", text: "Thể loại: " + phim[n].category}),
+
                     $("<div>", { class: "card-text text-left position-absolute mb-3 mt-2"}).css({"bottom":"0"}).append(
                       $("<div>", { class: " font-weight-bold d-inline  ", text: "Đánh giá: "}),
                       $("<div>", {class: "d-inline ", text: phim[n].rating})
                     ),
-                    // $("<div>", { class: "card-text text-left position-absolute mb-2", text: "Trung bình đánh giá: " + phim[n].rating}).css({"bottom":"0"}),
+
                   ),
                 );
               }),
@@ -285,83 +309,9 @@
       $.getJSON("http://127.0.0.1:5000/history", {data : val}, function(data){
         makeSlide(data,phimH,checkH,categoryH,directorH,ratingH,titleH,starsH,"history");
       });
+    });
+    $("#movie").click(function(){
 
-      // makeSlide = (data,phim,i,check,category,director,rating,title,stars, placeid) =>{
-      //   console.log(data);
-      //     data.push(["a"]);
-      //     $.map(data, function(v,i){
-      //       var checktt = $.grep(check, function(n){
-      //         return n == v[0];
-      //       });
-      //       if (checktt.length == 1){
-      //         category += ", "+ v[3];
-      //         director = v[1];
-      //         rating = v[4];
-      //         title = v[0];
-      //         stars = v[2];
-      //       }
-      //       else {
-      //         if (check.length == 0 ){
-      //           check.push(v[0]);
-      //           category = v[3];
-      //           director = v[1];
-      //           rating = v[4];
-      //           title = v[0];
-      //           stars = v[2];
-      //         }
-      //         else{
-      //           phim.push({
-      //             "title" : title,
-      //             "director" : director,
-      //             "stars" : stars,
-      //             "category" : category,
-      //             "rating" : rating,
-      //           });
-      //           check.push(v[0]);
-      //           category = v[3];
-      //           director = v[1];
-      //           rating = v[4];
-      //           title = v[0];
-      //           stars = v[2];
-      //         }
-      //       }
-      //     });
-      //     for (var i = 0 ; i < 3; i++){
-      //       $("#"+ placeid).append(
-      //         $("<div>", { class: "carousel-item w-100 text-center " + ( i == 0 ? "active" : "")}).append(
-      //           $.map([0,1,2,4], function(v){
-      //             var n = v +4*i;
-      //             return $("<div>", { class: "card col-md-8 d-inline-block mr-2 align-top position-relative"}).css({"width":"250px", "height": "650px"}).append(
-      //               $("<img>", { src: "http://image.phimmoi.net/film/8163/poster.medium.jpg", class:"card-img-top w-75"}),
-      //               $("<div>", { class: "card-body"}).append(
-      //                 $("<h5>", { class: "card-title ", text: "Phim: " + phim[n].title}),
-      //                 // $("<div>", { class: "card-text text-left", text: "- Đạo diễn: " + phim[n].director}),
-      //                 $("<div>", { class: "card-text text-left "}).append(
-      //                   $("<div>", { class: " font-weight-bold d-inline", text: "Đạo diễn: "}),
-      //                   $("<div>", {class: "d-inline", text: phim[n].director})
-      //                 ),
-      //                 $("<div>", { class: "card-text text-left mt-2"}).append(
-      //                   $("<div>", { class: " font-weight-bold d-inline", text: "Diễn viên: "}),
-      //                   $("<div>", {class: "d-inline", text: phim[n].stars})
-      //                 ),
-      //                 // $("<div>", { class: "card-text text-left", text: "Diễn viên: " + phim[n].stars}),
-      //                 $("<div>", { class: "card-text text-left mt-2"}).append(
-      //                   $("<div>", { class: " font-weight-bold d-inline", text: "Thể loại: "}),
-      //                   $("<div>", {class: "d-inline", text: phim[n].category})
-      //                 ),
-      //                 // $("<div>", { class: "card-text text-left", text: "Thể loại: " + phim[n].category}),
-      //                 $("<div>", { class: "card-text text-left position-absolute mb-3 mt-2"}).css({"bottom":"0"}).append(
-      //                   $("<div>", { class: " font-weight-bold d-inline  ", text: "Trung bình đánh giá: "}),
-      //                   $("<div>", {class: "d-inline ", text: phim[n].rating})
-      //                 ),
-      //                 // $("<div>", { class: "card-text text-left position-absolute mb-2", text: "Trung bình đánh giá: " + phim[n].rating}).css({"bottom":"0"}),
-      //               ),
-      //             );
-      //           }),
-      //         ),
-      //       );
-      //     }
-      //   // }
     });
   });
 
