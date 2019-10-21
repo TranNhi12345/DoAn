@@ -182,22 +182,20 @@
 
   <div class="modal" id="myModal">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" >
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title"> Chi tiết bộ phim</h4>
+          <h4 class="modal-title"> </h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
         <!-- Modal body -->
-        <div class="modal-body">
-
-        </div>
+        <div class="modal-body"></div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
         </div>
 
       </div>
@@ -207,7 +205,7 @@
 <script>
   $(function(){
     var val;
-    makeSlide = (data,phim,check,category,director,rating,title,stars,placeid) =>{
+    makeSlide = (data,phim,check,category,director,rating,title,stars,runningtime,releaseaddress,description,placeid) =>{
       console.log(data);
         data.push(["a"]);
         $.map(data, function(v,i){
@@ -220,6 +218,9 @@
             rating = v[4];
             title = v[0];
             stars = v[2];
+            runningtime = v[5];
+            releaseaddress = v[6];
+            description = v[7];
           }
           else {
             if (check.length == 0 ){
@@ -229,6 +230,9 @@
               rating = v[4];
               title = v[0];
               stars = v[2];
+              runningtime = v[5];
+              releaseaddress = v[6];
+              description = v[7];
             }
             else{
               phim.push({
@@ -237,6 +241,9 @@
                 "stars" : stars,
                 "category" : category,
                 "rating" : rating,
+                "runningtime" : runningtime,
+                "releaseaddress" : releaseaddress,
+                "description" : description,
               });
               check.push(v[0]);
               category = v[3];
@@ -244,6 +251,9 @@
               rating = v[4];
               title = v[0];
               stars = v[2];
+              runningtime = v[5];
+              releaseaddress = v[6];
+              description = v[7];
             }
           }
         });
@@ -272,19 +282,21 @@
                     ),
 
                     $("<div>", { class: "card-text text-left position-absolute mb-3 mt-2"}).css({"bottom":"0"}).append(
-                      $("<div>", { class: " font-weight-bold d-inline  ", text: "Đánh giá: "}),
+                      $("<div>", { class: " font-weight-bold d-inline  ", text: "Đánh giá phim: "}),
                       $("<div>", {class: "d-inline ", text: phim[n].rating})
                     ),
 
                   ),
                 ).on("click", function(){
                   $(".modal-body").children().remove();
+                  $(".modal-title").children().remove();
+                  $(".modal-title").append(
+                    $("<h5>", { class: "card-title ", text: "Phim: " + phim[n].title})
+                  ),
                   $(".modal-body").append(
-                    $("<img>", {src: "https://m.media-amazon.com/images/M/MV5BMzk2OTg4MTk1NF5BMl5BanBnXkFtZTcwNjExNTgzNA@@._V1_UX182_CR0,0,182,268_AL_.jpg", class:"card-img-top w-25 d-inline-block"}),
+                    $("<img>", {src: "https://m.media-amazon.com/images/M/MV5BMzk2OTg4MTk1NF5BMl5BanBnXkFtZTcwNjExNTgzNA@@._V1_UX182_CR0,0,182,268_AL_.jpg", class:"card-img-top w-25 mx-auto d-block "}),
 
-                    $("<div>", { class: "card-body d-inline-block"}).append(
-                      $("<h5>", { class: "card-title ", text: "Phim: " + phim[n].title}),
-
+                    $("<div>", { class: "card-body "}).append(
                       $("<div>", { class: "card-text text-left "}).append(
                         $("<div>", { class: " font-weight-bold d-inline", text: "Đạo diễn: "}),
                         $("<div>", {class: "d-inline", text: phim[n].director})
@@ -299,8 +311,23 @@
                         $("<div>", {class: "d-inline", text: phim[n].category})
                       ),
 
+                      $("<div>", { class: "card-text text-left mt-2"}).append(
+                        $("<div>", { class: " font-weight-bold d-inline", text: "Thời lượng: "}),
+                        $("<div>", {class: "d-inline", text: phim[n].runningtime})
+                      ),
+
+                      $("<div>", { class: "card-text text-left mt-2"}).append(
+                        $("<div>", { class: " font-weight-bold d-inline", text: "Quốc gia: "}),
+                        $("<div>", {class: "d-inline", text: phim[n].releaseaddress})
+                      ),
+
+                      $("<div>", { class: "card-text text-left mt-2"}).append(
+                        $("<div>", { class: " font-weight-bold d-inline", text: "Mô tả phim: "}),
+                        $("<div>", {class: "d-inline", text: phim[n].description})
+                      ),
+
                       $("<div>", { class: "card-text text-left position-absolute mt-2"}).append(
-                        $("<div>", { class: " font-weight-bold d-inline  ", text: "Đánh giá: "}),
+                        $("<div>", { class: " font-weight-bold d-inline  ", text: "Đánh giá phim: "}),
                         $("<div>", {class: "d-inline ", text: phim[n].rating})
                       ),
                     ),
@@ -322,22 +349,33 @@
         rating = "",
         title = "",
         stars = "",
+        runningtime = "",
+        releaseaddress = "",
+        description = "",
+
         phimH = [],
         checkH = [],
         categoryH = "",
         directorH = "",
         ratingH = "",
         titleH = "",
-        starsH = "";
+        starsH = "",
+        runningtimeH = "",
+        releaseaddressH = "",
+        descriptionH = "";
     val = $("#userID").val();
-
+    if (val>=1 && val<=943){
       $.getJSON("http://127.0.0.1:5000/out", {data : val}, function(data){
-        makeSlide(data,phim,check,category,director,rating,title,stars,"recommend");
+        makeSlide(data,phim,check,category,director,rating,title,stars,runningtime,releaseaddress,description,"recommend");
       });
 
       $.getJSON("http://127.0.0.1:5000/history", {data : val}, function(data){
-        makeSlide(data,phimH,checkH,categoryH,directorH,ratingH,titleH,starsH,"history");
+        makeSlide(data,phimH,checkH,categoryH,directorH,ratingH,titleH,starsH,runningtimeH,releaseaddressH,descriptionH,"history");
       });
+    }
+    else {
+      alert('UserID không hợp lệ')
+    }
     });
   });
 
