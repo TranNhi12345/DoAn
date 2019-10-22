@@ -205,7 +205,7 @@
 <script>
   $(function(){
     var val;
-    makeSlide = (data,phim,check,category,director,rating,title,stars,runningtime,releaseaddress,description,placeid) =>{
+    makeSlide = (data,phim,check,category,director,rating,title,stars,runningtime,releaseaddress,description,linkImg,placeid) =>{
       console.log(data);
         data.push(["a"]);
         $.map(data, function(v,i){
@@ -221,6 +221,7 @@
             runningtime = v[5];
             releaseaddress = v[6];
             description = v[7];
+            linkImg = v[8];
           }
           else {
             if (check.length == 0 ){
@@ -233,6 +234,7 @@
               runningtime = v[5];
               releaseaddress = v[6];
               description = v[7];
+              linkImg = v[8];
             }
             else{
               phim.push({
@@ -244,6 +246,7 @@
                 "runningtime" : runningtime,
                 "releaseaddress" : releaseaddress,
                 "description" : description,
+                "linkImg" : linkImg,
               });
               check.push(v[0]);
               category = v[3];
@@ -254,6 +257,7 @@
               runningtime = v[5];
               releaseaddress = v[6];
               description = v[7];
+              linkImg = v[8];
             }
           }
         });
@@ -263,7 +267,7 @@
               $.map([0,1,2,3], function(v){
                 var n = v +4*i;
                 return $("<div>", { class: "card col-md-8 d-inline-block mr-2 align-top position-relative", id: "movie"}).css({"width":"250px", "height": "650px"}).append(
-                  $("<img>", { src: "https://m.media-amazon.com/images/M/MV5BMzk2OTg4MTk1NF5BMl5BanBnXkFtZTcwNjExNTgzNA@@._V1_UX182_CR0,0,182,268_AL_.jpg", class:"card-img-top w-75"}),
+                  $("<img>", { src: phim[n].linkImg, class:"card-img-top w-75"}),
                   $("<div>", { class: "card-body"}).append(
                     $("<h5>", { class: "card-title ", text: "Phim: " + phim[n].title}),
 
@@ -294,7 +298,7 @@
                     $("<h5>", { class: "card-title ", text: "Phim: " + phim[n].title})
                   ),
                   $(".modal-body").append(
-                    $("<img>", {src: "https://m.media-amazon.com/images/M/MV5BMzk2OTg4MTk1NF5BMl5BanBnXkFtZTcwNjExNTgzNA@@._V1_UX182_CR0,0,182,268_AL_.jpg", class:"card-img-top w-25 mx-auto d-block "}),
+                    $("<img>", {src: phim[n].linkImg, class:"card-img-top w-25 mx-auto d-block "}),
 
                     $("<div>", { class: "card-body "}).append(
                       $("<div>", { class: "card-text text-left "}).append(
@@ -352,6 +356,7 @@
         runningtime = "",
         releaseaddress = "",
         description = "",
+        linkImg = "",
 
         phimH = [],
         checkH = [],
@@ -362,15 +367,16 @@
         starsH = "",
         runningtimeH = "",
         releaseaddressH = "",
-        descriptionH = "";
+        descriptionH = "",
+        linkImgH = "";
     val = $("#userID").val();
     if (val>=1 && val<=943){
       $.getJSON("http://127.0.0.1:5000/out", {data : val}, function(data){
-        makeSlide(data,phim,check,category,director,rating,title,stars,runningtime,releaseaddress,description,"recommend");
+        makeSlide(data,phim,check,category,director,rating,title,stars,runningtime,releaseaddress,description,linkImg,"recommend");
       });
 
       $.getJSON("http://127.0.0.1:5000/history", {data : val}, function(data){
-        makeSlide(data,phimH,checkH,categoryH,directorH,ratingH,titleH,starsH,runningtimeH,releaseaddressH,descriptionH,"history");
+        makeSlide(data,phimH,checkH,categoryH,directorH,ratingH,titleH,starsH,runningtimeH,releaseaddressH,descriptionH,linkImgH,"history");
       });
     }
     else {
